@@ -4,7 +4,15 @@
 // };
 
 // But instead we're going to implement it from scratch:
-var getElementsByClassName = function(className
-) {
+var getElementsByClassName = function(className) {
   // your code here
-};
+  var nodeList = [];
+  function traverse (node) {
+  	if (_.contains(node.classList, className)) {
+  		nodeList.push(node);
+  	}
+  	_.forEach(node.childNodes, function(childNode) {traverse(childNode);});
+  }
+  traverse(document.body);
+  return nodeList;
+}
